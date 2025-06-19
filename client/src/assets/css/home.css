@@ -1,0 +1,11 @@
+.container {
+  @apply block relative mx-auto my-10 h-auto w-[50rem] p-5;
+}
+
+.title {
+  @apply text-5xl text-center border-[5px] border-primary py-[0.3rem] px-[0.2rem] rounded-sm;
+}
+
+.btn {
+  @apply px-[1.7rem] py-[0.2rem] rounded-[0.1rem] text-[1.2rem] hover:cursor-pointer hover:bg-light hover:text-dark;
+}

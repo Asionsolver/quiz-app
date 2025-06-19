@@ -1,0 +1,12 @@
+@theme {
+  /* Custom Font Family */
+  --font-poppins: "Poppins", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+
+  /* Custom Color */
+  --color-primary: #0dff92;
+  --color-dark: #222222;
+
+  --color-light: #f0f0f0;
+  --color-gray-light: #cecece;
+}
