@@ -1,0 +1,13 @@
+.container .grid {
+  /* margin-top: 3em;
+  display: grid;
+  grid-template-columns: 1fr 1fr; */
+  @apply mt-12 grid grid-cols-2;
+}
+.next {
+  @apply bg-primary justify-self-end;
+}
+
+.prev {
+  @apply bg-button justify-self-start;
+}

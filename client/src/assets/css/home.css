@@ -9,3 +9,22 @@
 .btn {
   @apply px-[1.7rem] py-[0.2rem] rounded-[0.1rem] text-[1.2rem] hover:cursor-pointer hover:bg-light hover:text-dark;
 }
+
+.container ol li {
+  @apply text-gray-light text-[1rem];
+}
+.start {
+  @apply flex justify-center pt-8;
+}
+
+.start .btn {
+  @apply bg-[#faff5a];
+}
+
+#form {
+  @apply flex justify-center mt-16;
+}
+
+#form .userid {
+  @apply w-1/2 px-[2rem] py-[0.7rem] border-none rounded-[3px] text-[1rem] bg-white;
+}

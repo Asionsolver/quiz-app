@@ -1,0 +1,11 @@
+.flex-center {
+  @apply flex flex-col justify-center border border-[#cecece] px-[4em] py-[3em] gap-[1em];
+}
+
+.container .flex-box {
+  @apply flex justify-between;
+}
+.container .flex-box span {
+  font-size: 1.4em;
+  color: #cecece;
+}
