@@ -1,29 +1,65 @@
+import Questions from "../model/questionSchema.js";
+import Results from "../model/resultSchema.js";
+import questions, { answers } from "../database/data.js";
+
 // get all questions
 export async function getQuestions(req, res) {
-  res.json("Question API get Request");
+  try {
+    const ques = await Questions.find();
+    res.json(ques);
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // insert all questions
 export async function insertQuestions(req, res) {
-  res.json("Question API post Request");
+  try {
+    Questions.insertMany({ questions, answers });
+    res.json({ msg: "Data Saved Successfully...!" });
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // Delete all questions
 export async function dropQuestion(req, res) {
-  res.json("Question API delete Request");
+  try {
+    await Questions.deleteMany();
+    res.json({ msg: "Question Deleted Successfully...!" });
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // get all result
 export async function getResult(req, res) {
-  res.json("Result API delete Request");
+  try {
+    const res = await Results.find();
+    res.json(res);
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // post all result
 export async function storeResult(req, res) {
-  res.json("Result API post Request");
+  try {
+    const { username, result, attempts, point, achieve } = req.body;
+    if (!username && !result) throw new Error("Data Not Provided...!");
+    Results.create({ username, result, attempts, point, achieve });
+    res.json({ msg: "Result Saved Successfully...!" });
+  } catch (error) {
+    res.json({ error });
+  }
 }
 
 // delete all result
 export async function dropResult(req, res) {
-  res.json("Result API delete Request");
+  try {
+    await Results.deleteMany();
+    res.json({ msg: "Result Deleted Successfully...!" });
+  } catch (error) {
+    res.json({ error });
+  }
 }
