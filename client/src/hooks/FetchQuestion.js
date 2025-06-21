@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import data, { answers } from "../components/database/data";
+// import data, { answers } from "../components/database/data";
 import { useDispatch } from "react-redux";
 
 /** redux action */
 import * as Action from "../redux/question_reducer";
+import { getServerData } from "../helper/helper";
 
 /** fetch question hook to fetch api data and set value to store */
 export const useFetchQuestion = () => {
@@ -20,13 +21,22 @@ export const useFetchQuestion = () => {
 
     (async () => {
       try {
-        let question = await data;
-        if (question.length > 0) {
+        // let question = await data;
+        const [{ questions, answers }] = await getServerData(
+          `${import.meta.env.VITE_SERVER_HOSTNAME}/api/questions`,
+          (data) => data
+        );
+        console.log({ questions, answers });
+
+        if (questions.length > 0) {
           setGetData((prev) => ({ ...prev, isLoading: false }));
-          setGetData((prev) => ({ ...prev, apiData: { question, answers } }));
+          setGetData((prev) => ({
+            ...prev,
+            apiData: questions,
+          }));
 
           /** dispatch an action */
-          dispatch(Action.startExamAction({ question, answers }));
+          dispatch(Action.startExamAction({ question: questions, answers }));
         } else {
           throw new Error("No Question Available");
         }

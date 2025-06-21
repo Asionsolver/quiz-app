@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+
 import { Link } from 'react-router'
 import ResultTable from './ResultTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetAction } from '../redux/question_reducer';
 import { resetResultAction } from '../redux/result_reducer';
 import { attemptsNumber, earnPointsNumber, flagResult } from '../helper/helper';
+import { usePublishResult } from '../hooks/setResult';
 
 
 
@@ -12,10 +13,7 @@ export default function Result() {
     const dispatch = useDispatch();
     const { question: { queue, answers }, result: { result, userId } } = useSelector(state => state)
 
-    useEffect(() => {
-        console.log(flag)
 
-    })
     function onRestart() {
         console.log('on Restart')
         dispatch(resetAction());
@@ -27,6 +25,9 @@ export default function Result() {
     const attempts = attemptsNumber(result)
     const earnPoint = earnPointsNumber(result, answers, 10)
     const flag = flagResult(totalPoints, earnPoint)
+    // store user result
+    usePublishResult({ result, username: userId, attempts, points: earnPoint, achieve: flag ? "Passed" : "Failed" })
+    // console.log({ result, username: userId, attempts, points: earnPoint, achieved: flag ? "Passed" : "Failed" })
     return (
         <div className='container'>
             <h1 className='title text-light'>Quiz Application</h1>

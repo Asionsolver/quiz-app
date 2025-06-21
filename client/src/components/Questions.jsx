@@ -27,7 +27,7 @@ const Questions = ({ onChecked }) => {
     };
 
     if (isLoading) return <h3 className="text-light">Loading Question</h3>
-    if (serverError) return <h3 className="text-light">{serverError || 'Unknown Error'}</h3>
+    if (serverError) return <h3 className="text-light">{serverError.message || 'Unknown Error'}</h3>
     return (
         <div className="p-12">
             <h2 className="text-light text-xl font-semibold mb-4">{question?.question}</h2>
